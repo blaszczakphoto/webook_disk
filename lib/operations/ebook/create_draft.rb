@@ -22,7 +22,11 @@ module Ebook
     private
 
     def book_stamp
-      book_id.to_s + '_' +  Time.now.strftime("%H%M%S_%d%m%Y")
+      "#{book_id.to_s}_#{time_stamp}"
+    end
+
+    def time_stamp
+      Time.now.strftime("%H%M%S_%d%m%Y")
     end
   end
 end
