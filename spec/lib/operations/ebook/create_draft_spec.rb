@@ -18,7 +18,7 @@ describe Ebook::CreateDraft do
   let(:book_opf) { File.open("#{root}/spec/support/book_files/book.opf").read }
   subject { described_class.new(book_id: 456, text: text, toc: toc, book_opf: book_opf) }
 
-  it "should create a new dir in books_drafts", focus: true do
+  it "should create a new dir in books_drafts" do
     subject.call
     expect(Dir.exists?("#{root}/books_drafts/#{expected_book_stamp}")).to be_truthy
   end
@@ -26,5 +26,7 @@ describe Ebook::CreateDraft do
   it "creates book files in book dir" do
     subject.call
     expect(File.exists?("#{root}/books_drafts/#{expected_book_stamp}/text.html")).to be_truthy
+    expect(File.exists?("#{root}/books_drafts/#{expected_book_stamp}/toc.html")).to be_truthy
+    expect(File.exists?("#{root}/books_drafts/#{expected_book_stamp}/book.opf")).to be_truthy
   end
 end
