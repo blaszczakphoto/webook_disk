@@ -9,4 +9,5 @@ group :development, :test do
   gem 'rerun'
   gem 'pry'
   gem 'dotenv'
+  gem 'timecop'
 end

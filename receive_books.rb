@@ -19,7 +19,6 @@ def generate_ebook(book_id, draft_path)
 end
 
 get '/' do
-  puts settings.root
   if settings.development?
     "development!"
   else
@@ -28,7 +27,7 @@ get '/' do
 end
 
 post '/' do
-  book_id = params['ebook_draft']['book_id'] + '_' +  Time.now.strftime("%H%M%S_%m%Y")
+  book_id = params['ebook_draft']['book_id'] + '_' +  Time.now.strftime("%H%M%S_%d%m%Y")
   draft_path = "#{settings.root}/books_drafts/#{book_id}"
   FileUtils::mkdir_p draft_path
   File.open("#{draft_path}/text.html", "w") {|f| f.write(params['ebook_draft']['text']) }
