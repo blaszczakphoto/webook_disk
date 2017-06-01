@@ -12,7 +12,6 @@ module Ebook
     end
 
     def call
-      draft_path = "#{Sinatra::Application.settings.root}/books_drafts/#{book_stamp}"
       FileUtils::mkdir_p draft_path
       File.open("#{draft_path}/text.html", "w") {|f| f.write(text) }
       File.open("#{draft_path}/toc.html", "w") {|f| f.write(toc) }
@@ -27,6 +26,10 @@ module Ebook
 
     def time_stamp
       Time.now.strftime("%H%M%S_%d%m%Y")
+    end
+
+    def draft_path
+      @draft_path ||= "#{Sinatra::Application.settings.root}/books_drafts/#{book_stamp}" 
     end
   end
 end
