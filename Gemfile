@@ -4,7 +4,8 @@ gem 'sinatra'
 gem 'kindlegen'
 gem 'dropbox_api'
 
-group :development do
+group :development, :test do
+  gem 'rspec'
   gem 'rerun'
   gem 'pry'
   gem 'dotenv'
