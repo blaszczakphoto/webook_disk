@@ -1,10 +1,12 @@
 require 'sinatra'
 require 'kindlegen'
 require 'fileutils'
-require 'pry'
 require 'dropbox_api'
-require 'dotenv/load'
 
+if settings.development?
+  require 'pry'
+  require 'dotenv/load'
+end
 
 def generate_ebook(book_id)
   stdout, stderr, status = Kindlegen.run("books_drafts/#{book_id}/book.opf", "-o", "#{book_id}.mobi")
