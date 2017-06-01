@@ -12,12 +12,17 @@ module Ebook
     end
 
     def call
-      book_stamp = book_id.to_s + '_' +  Time.now.strftime("%H%M%S_%d%m%Y")
       draft_path = "#{Sinatra::Application.settings.root}/books_drafts/#{book_stamp}"
       FileUtils::mkdir_p draft_path
       File.open("#{draft_path}/text.html", "w") {|f| f.write(text) }
       File.open("#{draft_path}/toc.html", "w") {|f| f.write(toc) }
       File.open("#{draft_path}/book.opf", "w") {|f| f.write(book_opf) }
+    end
+
+    private
+
+    def book_stamp
+      book_id.to_s + '_' +  Time.now.strftime("%H%M%S_%d%m%Y")
     end
   end
 end
