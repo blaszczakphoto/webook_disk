@@ -5,20 +5,14 @@ require 'fileutils'
 require 'dropbox_api'
 require_relative 'lib/services/generate_book_stamp'
 require_relative 'lib/operations/ebook/create_draft'
+require_relative 'lib/operations/ebook/upload_to_dropbox'
 
 if settings.development? || settings.test?
   require 'pry'
   require 'dotenv/load'
 end
 
-def generate_ebook(book_id, draft_path)
-  stdout, stderr, status = Kindlegen.run("#{draft_path}/book.opf", "-o", "#{book_id}.mobi")
-  if status == 0
-    puts stdout
-  else
-    $stderr.puts stderr
-  end
-end
+
 
 get '/' do
   if settings.development?
@@ -37,6 +31,17 @@ post '/' do
   link = client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
   FileUtils.rm_rf(draft_path)
   link.url.gsub("dl=0", "dl=1")
+end
+
+private
+
+def generate_ebook(book_id, draft_path)
+  stdout, stderr, status = Kindlegen.run("#{draft_path}/book.opf", "-o", "#{book_id}.mobi")
+  if status == 0
+    puts stdout
+  else
+    $stderr.puts stderr
+  end
 end
 
 def create_draft_files
