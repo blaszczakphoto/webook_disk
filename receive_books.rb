@@ -3,6 +3,7 @@ require_relative 'config'
 require 'kindlegen'
 require 'fileutils'
 require 'dropbox_api'
+require_relative 'lib/services/generate_book_stamp'
 
 if settings.development? || settings.test?
   require 'pry'
@@ -27,7 +28,7 @@ get '/' do
 end
 
 post '/' do
-  book_id = params['ebook_draft']['book_id'] + '_' +  Time.now.strftime("%H%M%S_%d%m%Y")
+  book_id = GenerateBookStamp.new(params['ebook_draft']['book_id']).call
   draft_path = "#{settings.root}/books_drafts/#{book_id}"
   FileUtils::mkdir_p draft_path
   File.open("#{draft_path}/text.html", "w") {|f| f.write(params['ebook_draft']['text']) }
