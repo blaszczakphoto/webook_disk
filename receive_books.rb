@@ -28,17 +28,17 @@ get '/' do
 end
 
 post '/' do
-  book_id = GenerateBookStamp.new(params['ebook_draft']['book_id']).call
-  draft_path = "#{settings.root}/books_drafts/#{book_id}"
+  book_stamp = GenerateBookStamp.new(params['ebook_draft']['book_id']).call
+  draft_path = "#{settings.root}/books_drafts/#{book_stamp}"
   FileUtils::mkdir_p draft_path
   File.open("#{draft_path}/text.html", "w") {|f| f.write(params['ebook_draft']['text']) }
   File.open("#{draft_path}/toc.html", "w") {|f| f.write(params['ebook_draft']['toc']) }
   File.open("#{draft_path}/book.opf", "w") {|f| f.write(params['ebook_draft']['book_opf']) }
-  generate_ebook(book_id, draft_path)
+  generate_ebook(book_stamp, draft_path)
   token = ENV.fetch("DROPBOX_TOKEN")
   client = DropboxApi::Client.new(token)
-  file = client.upload("/#{book_id}.mobi", IO.read("#{draft_path}/#{book_id}.mobi"))
-  link = client.create_shared_link_with_settings("/#{book_id}.mobi", {short_url: false})
+  file = client.upload("/#{book_stamp}.mobi", IO.read("#{draft_path}/#{book_stamp}.mobi"))
+  link = client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
   FileUtils.rm_rf(draft_path)
   link.url.gsub("dl=0", "dl=1")
 end
