@@ -12,13 +12,25 @@ module Ebook
     end
 
     def call
-      FileUtils::mkdir_p draft_path
-      File.open("#{draft_path}/text.html", "w") {|f| f.write(text) }
-      File.open("#{draft_path}/toc.html", "w") {|f| f.write(toc) }
-      File.open("#{draft_path}/book.opf", "w") {|f| f.write(book_opf) }
+      create_book_draft_dir
+      create_book_draft_files
     end
 
     private
+
+    def create_book_draft_files
+      save_file_from_string("text.html", text)
+      save_file_from_string("toc.html", toc)
+      save_file_from_string("book.opf", book_opf)
+    end
+
+    def create_book_draft_dir
+      FileUtils::mkdir_p draft_path
+    end
+
+    def save_file_from_string(file_name, string)
+      File.open("#{draft_path}/#{file_name}", "w") {|f| f.write(string) }
+    end
 
     def book_stamp
       "#{book_id.to_s}_#{time_stamp}"
