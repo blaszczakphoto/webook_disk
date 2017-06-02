@@ -4,6 +4,7 @@ require 'kindlegen'
 require 'fileutils'
 require 'dropbox_api'
 require_relative 'lib/services/generate_book_stamp'
+require_relative 'lib/operations/ebook/create_draft'
 
 if settings.development? || settings.test?
   require 'pry'
@@ -28,12 +29,7 @@ get '/' do
 end
 
 post '/' do
-  book_stamp = GenerateBookStamp.new(params['ebook_draft']['book_id']).call
-  draft_path = "#{settings.root}/books_drafts/#{book_stamp}"
-  FileUtils::mkdir_p draft_path
-  File.open("#{draft_path}/text.html", "w") {|f| f.write(params['ebook_draft']['text']) }
-  File.open("#{draft_path}/toc.html", "w") {|f| f.write(params['ebook_draft']['toc']) }
-  File.open("#{draft_path}/book.opf", "w") {|f| f.write(params['ebook_draft']['book_opf']) }
+  create_draft_files
   generate_ebook(book_stamp, draft_path)
   token = ENV.fetch("DROPBOX_TOKEN")
   client = DropboxApi::Client.new(token)
@@ -41,4 +37,21 @@ post '/' do
   link = client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
   FileUtils.rm_rf(draft_path)
   link.url.gsub("dl=0", "dl=1")
+end
+
+def create_draft_files
+  Ebook::CreateDraft.new(
+    book_stamp: book_stamp, 
+    text: params['ebook_draft']['text'],
+    toc: params['ebook_draft']['toc'],
+    book_opf: params['ebook_draft']['book_opf'],
+  ).call
+end
+
+def book_stamp
+  @book_stamp ||= GenerateBookStamp.new(params['ebook_draft']['book_id']).call
+end
+
+def draft_path
+  @draft_path ||= "#{settings.root}/books_drafts/#{book_stamp}"
 end
