@@ -45,6 +45,7 @@ def create_draft_files
     text: params['ebook_draft']['text'],
     toc: params['ebook_draft']['toc'],
     book_opf: params['ebook_draft']['book_opf'],
+    draft_path: draft_path,
   ).call
 end
 

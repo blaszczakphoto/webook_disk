@@ -2,13 +2,14 @@ require_relative '../../../receive_books.rb'
 
 module Ebook
   class CreateDraft
-    attr_accessor :book_stamp, :text, :toc, :book_opf
+    attr_accessor :book_stamp, :text, :toc, :book_opf, :draft_path
 
-    def initialize(book_stamp:, text:, toc:, book_opf:)
+    def initialize(book_stamp:, text:, toc:, book_opf:, draft_path:)
       @book_stamp = book_stamp
       @text = text
       @toc = toc
       @book_opf = book_opf
+      @draft_path = draft_path
     end
 
     def call
@@ -30,10 +31,6 @@ module Ebook
 
     def save_file_from_string(file_name, string)
       File.open("#{draft_path}/#{file_name}", "w") {|f| f.write(string) }
-    end
-
-    def draft_path
-      @draft_path ||= "#{Sinatra::Application.settings.root}/books_drafts/#{book_stamp}" 
     end
   end
 end
