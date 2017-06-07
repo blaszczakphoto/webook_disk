@@ -10,10 +10,10 @@ module Ebook
     end
     
     def call
-      client.upload("/#{book_stamp}.mobi", IO.read("#{draft_path}/#{book_stamp}.mobi"))
-      link = client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
-      FileUtils.rm_rf(draft_path)
-      direct_download_link
+      upload!
+      link = create_shareable_link
+      clean_directories!
+      direct_download_link(link)
     end
 
     private
@@ -26,8 +26,20 @@ module Ebook
       @client ||= DropboxApi::Client.new(token)
     end
 
-    def direct_download_link
+    def create_shareable_link
+      client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
+    end
+
+    def direct_download_link(link)
       link.url.gsub("dl=0", "dl=1")
+    end
+
+    def upload!
+      client.upload("/#{book_stamp}.mobi", IO.read("#{draft_path}/#{book_stamp}.mobi"))
+    end
+
+    def clean_directories!
+      FileUtils.rm_rf(draft_path)
     end
   end
 end
