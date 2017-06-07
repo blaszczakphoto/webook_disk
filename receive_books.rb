@@ -25,12 +25,7 @@ end
 post '/' do
   create_draft_files
   generate_ebook(book_stamp, draft_path)
-  token = ENV.fetch("DROPBOX_TOKEN")
-  client = DropboxApi::Client.new(token)
-  file = client.upload("/#{book_stamp}.mobi", IO.read("#{draft_path}/#{book_stamp}.mobi"))
-  link = client.create_shared_link_with_settings("/#{book_stamp}.mobi", {short_url: false})
-  FileUtils.rm_rf(draft_path)
-  link.url.gsub("dl=0", "dl=1")
+  upload_to_dropbox
 end
 
 private
@@ -51,6 +46,10 @@ def create_draft_files
     toc: params['ebook_draft']['toc'],
     book_opf: params['ebook_draft']['book_opf'],
   ).call
+end
+
+def upload_to_dropbox
+  Ebook::UploadToDropbox.new(book_stamp, draft_path).call
 end
 
 def book_stamp
