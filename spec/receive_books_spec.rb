@@ -16,7 +16,7 @@ describe "Application" do
         text: text,
         toc: toc,
         book_opf: book_opf,
-        images: [
+        image_urls: [
           "http://jakoszczedzacpieniadze.pl/wp-content/uploads/2017/05/FB-Jak-tworzyc-zarabiajace-produkty.png",
           "https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg",
         ]
