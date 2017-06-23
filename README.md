@@ -9,6 +9,8 @@ fill .env.sample with dropbox token
 - git pull origin master
 - bundle install --without development test
 - ps aux | kill daemon
+
+- mkdir log && cd mkdir && touch production.log && chmod +w production.log && cd ..
 - nohup ruby receive_books.rb -p 3012 -e production >> log/production.log 2>&1 &
 
 # Intall on server
