@@ -46,7 +46,11 @@ module Ebook
       image_urls.each do |url|
         uri = URI.parse(url)
         File.open("#{draft_path}/images/#{File.basename(uri.path)}", 'wb') do |fo|
-          fo.write open(url).read 
+          begin
+            fo.write open(url).read 
+          rescue OpenURI::HTTPError
+            next
+          end
         end
       end
     end
