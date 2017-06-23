@@ -17,7 +17,7 @@ fill .env.sample with dropbox token
 - add to bash dropbox token
 
 # Tests
-rspec 
+rspec  
 
 # Resources
 - http://jesus.github.io/dropbox_api/
