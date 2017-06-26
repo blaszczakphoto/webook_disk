@@ -1,0 +1,162 @@
+# Logfile created on 2017-06-26 18:44:26 +0200 by logger.rb/56815
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-06-26 18:44:26 +0200 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [ac6c6b9d] Running /usr/local/rvm/bin/rvm version as profiart@144.76.189.18
+ DEBUG [ac6c6b9d] Command: /usr/local/rvm/bin/rvm version
+ DEBUG [ac6c6b9d] 	rvm 1.26.11 (master) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+ DEBUG [ac6c6b9d] Finished in 1.349 seconds with exit status 0 (successful).
+ DEBUG [0e6c9ace] Running /usr/local/rvm/bin/rvm current as profiart@144.76.189.18
+ DEBUG [0e6c9ace] Command: /usr/local/rvm/bin/rvm current
+ DEBUG [0e6c9ace] 	ruby-2.4.1
+ DEBUG [0e6c9ace] Finished in 0.327 seconds with exit status 0 (successful).
+ DEBUG [01126f8e] Running /usr/local/rvm/bin/rvm 2.4.1 do ruby --version as profiart@144.76.189.18
+ DEBUG [01126f8e] Command: /usr/local/rvm/bin/rvm 2.4.1 do ruby --version
+ DEBUG [01126f8e] 	ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+ DEBUG [01126f8e] Finished in 0.684 seconds with exit status 0 (successful).
+  INFO [872dbf87] Running /usr/bin/env mkdir -p /home/profiart/tmp as profiart@144.76.189.18
+ DEBUG [872dbf87] Command: /usr/bin/env mkdir -p /home/profiart/tmp
+  INFO [872dbf87] Finished in 0.165 seconds with exit status 0 (successful).
+ DEBUG Uploading /home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh 0.0%
+  INFO Uploading /home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh 100.0%
+  INFO [29a71c8b] Running /usr/bin/env chmod 700 /home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh as profiart@144.76.189.18
+ DEBUG [29a71c8b] Command: /usr/bin/env chmod 700 /home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh
+  INFO [29a71c8b] Finished in 0.156 seconds with exit status 0 (successful).
+  INFO [753aa82f] Running /usr/bin/env git ls-remote git@github.com:blaszczakphoto/webook_disk.git HEAD as profiart@144.76.189.18
+ DEBUG [753aa82f] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git ls-remote git@github.com:blaszczakphoto/webook_disk.git HEAD )
+ DEBUG [753aa82f] 	5b63d5bf6bf099d46440b35abf858d83f8060b56	HEAD
+  INFO [753aa82f] Finished in 1.964 seconds with exit status 0 (successful).
+  INFO [02f4dd84] Running /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/shared /home/profiart/domains/webook_disk.profiart.pl/public_html/releases as profiart@144.76.189.18
+ DEBUG [02f4dd84] Command: /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/shared /home/profiart/domains/webook_disk.profiart.pl/public_html/releases
+  INFO [02f4dd84] Finished in 0.167 seconds with exit status 0 (successful).
+  INFO [e14db25c] Running /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/log as profiart@144.76.189.18
+ DEBUG [e14db25c] Command: /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/log
+  INFO [e14db25c] Finished in 0.150 seconds with exit status 0 (successful).
+ DEBUG [3efc3034] Running [ -f /home/profiart/domains/webook_disk.profiart.pl/public_html/current/REVISION ] as profiart@144.76.189.18
+ DEBUG [3efc3034] Command: [ -f /home/profiart/domains/webook_disk.profiart.pl/public_html/current/REVISION ]
+ DEBUG [3efc3034] Finished in 0.159 seconds with exit status 1 (failed).
+ DEBUG [8d007fec] Running [ -f /home/profiart/domains/webook_disk.profiart.pl/public_html/repo/HEAD ] as profiart@144.76.189.18
+ DEBUG [8d007fec] Command: [ -f /home/profiart/domains/webook_disk.profiart.pl/public_html/repo/HEAD ]
+ DEBUG [8d007fec] Finished in 0.154 seconds with exit status 1 (failed).
+ DEBUG [ada80fa9] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [ada80fa9] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html'" 1>&2; false; fi
+ DEBUG [ada80fa9] Finished in 0.156 seconds with exit status 0 (successful).
+  INFO [1f6551f3] Running /usr/bin/env git clone --mirror git@github.com:blaszczakphoto/webook_disk.git /home/profiart/domains/webook_disk.profiart.pl/public_html/repo as profiart@144.76.189.18
+ DEBUG [1f6551f3] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git clone --mirror git@github.com:blaszczakphoto/webook_disk.git /home/profiart/domains/webook_disk.profiart.pl/public_html/repo )
+ DEBUG [1f6551f3] 	Cloning into bare repository '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'...
+  INFO [1f6551f3] Finished in 3.493 seconds with exit status 0 (successful).
+ DEBUG [143aeba7] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [143aeba7] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi
+ DEBUG [143aeba7] Finished in 0.148 seconds with exit status 0 (successful).
+  INFO [009be849] Running /usr/bin/env git remote set-url origin git@github.com:blaszczakphoto/webook_disk.git as profiart@144.76.189.18
+ DEBUG [009be849] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git remote set-url origin git@github.com:blaszczakphoto/webook_disk.git )
+  INFO [009be849] Finished in 0.155 seconds with exit status 0 (successful).
+  INFO [32eb2062] Running /usr/bin/env git remote update --prune as profiart@144.76.189.18
+ DEBUG [32eb2062] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [32eb2062] 	Fetching origin
+  INFO [32eb2062] Finished in 2.251 seconds with exit status 0 (successful).
+ DEBUG [a759ef30] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [a759ef30] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi
+ DEBUG [a759ef30] Finished in 0.167 seconds with exit status 0 (successful).
+  INFO [15e2177a] Running /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 as profiart@144.76.189.18
+ DEBUG [15e2177a] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 )
+  INFO [15e2177a] Finished in 0.166 seconds with exit status 0 (successful).
+  INFO [cd8a3e1b] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 as profiart@144.76.189.18
+ DEBUG [cd8a3e1b] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 )
+  INFO [cd8a3e1b] Finished in 0.378 seconds with exit status 0 (successful).
+ DEBUG [8b5ee8ba] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [8b5ee8ba] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/repo; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/repo'" 1>&2; false; fi
+ DEBUG [8b5ee8ba] Finished in 0.159 seconds with exit status 0 (successful).
+ DEBUG [2b0a53b1] Running /usr/bin/env git rev-list --max-count=1 master as profiart@144.76.189.18
+ DEBUG [2b0a53b1] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/home/profiart/tmp/git-ssh-webook_disk-production-mariusz.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [2b0a53b1] 	5b63d5bf6bf099d46440b35abf858d83f8060b56
+ DEBUG [2b0a53b1] Finished in 0.152 seconds with exit status 0 (successful).
+ DEBUG [68ec781b] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [68ec781b] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431'" 1>&2; false; fi
+ DEBUG [68ec781b] Finished in 0.158 seconds with exit status 0 (successful).
+  INFO [418afcde] Running /usr/bin/env echo "5b63d5bf6bf099d46440b35abf858d83f8060b56" >> REVISION as profiart@144.76.189.18
+ DEBUG [418afcde] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 && /usr/bin/env echo "5b63d5bf6bf099d46440b35abf858d83f8060b56" >> REVISION
+  INFO [418afcde] Finished in 0.164 seconds with exit status 0 (successful).
+  INFO [1f3cde26] Running /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 as profiart@144.76.189.18
+ DEBUG [1f3cde26] Command: /usr/bin/env mkdir -p /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431
+  INFO [1f3cde26] Finished in 0.158 seconds with exit status 0 (successful).
+ DEBUG [f0d4ff99] Running [ -L /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log ] as profiart@144.76.189.18
+ DEBUG [f0d4ff99] Command: [ -L /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log ]
+ DEBUG [f0d4ff99] Finished in 0.143 seconds with exit status 1 (failed).
+ DEBUG [d4fa715c] Running [ -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log ] as profiart@144.76.189.18
+ DEBUG [d4fa715c] Command: [ -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log ]
+ DEBUG [d4fa715c] Finished in 0.172 seconds with exit status 1 (failed).
+  INFO [6e42d098] Running /usr/bin/env ln -s /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/log /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log as profiart@144.76.189.18
+ DEBUG [6e42d098] Command: /usr/bin/env ln -s /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/log /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431/log
+  INFO [6e42d098] Finished in 0.152 seconds with exit status 0 (successful).
+ DEBUG [8e1cf931] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [8e1cf931] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431'" 1>&2; false; fi
+ DEBUG [8e1cf931] Finished in 0.168 seconds with exit status 0 (successful).
+ DEBUG [a872246c] Running /usr/local/rvm/bin/rvm 2.4.1 do bundle check --path /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/bundle as profiart@144.76.189.18
+ DEBUG [a872246c] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 && /usr/local/rvm/bin/rvm 2.4.1 do bundle check --path /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/bundle
+ DEBUG [a872246c] 	Warning: the running version of Bundler is older than the version that created the lockfile. We suggest you upgrade to the latest version of Bundler by running `gem install bundler`.
+ DEBUG [a872246c] 	The following gems are missing
+ * rake (12.0.0)
+ * net-ssh (4.1.0)
+ * net-scp (1.2.1)
+ DEBUG [a872246c] 	 * sshkit (1.13.1)
+ * airbrussh (1.2.0)
+ * i18n (0.8.1)
+ DEBUG [a872246c] 	 * capistrano (3.8.1)
+ * capistrano-rvm (0.1.2)
+ * coderay (1.1.1)
+ * diff-lcs (1.3)
+ DEBUG [a872246c] 	 * dotenv (2.2.1)
+ DEBUG [a872246c] 	 * multipart-post (2.0.0)
+ DEBUG [a872246c] 	 * faraday (0.11.0)
+ DEBUG [a872246c] 	 * jwt (1.5.6)
+ DEBUG [a872246c] 	 * multi_json (1.12.1)
+ DEBUG [a872246c] 	 * multi_xml (0.6.0)
+ DEBUG [a872246c] 	 * rack (2.0.3)
+ DEBUG [a872246c] 	 * oauth2 (1.3.1)
+ DEBUG [a872246c] 	 * dropbox_api (0.1.6)
+ DEBUG [a872246c] 	 * ffi (1.9.18)
+ DEBUG [a872246c] 	 * rubyzip (1.2.1)
+ DEBUG [a872246c] 	 * kindlegen (3.0.3)
+ DEBUG [a872246c] 	 * rb-fsevent (0.9.8)
+ DEBUG [a872246c] 	 * rb-inotify (0.9.8)
+ DEBUG [a872246c] 	 * ruby_dep (1.5.0)
+ DEBUG [a872246c] 	 * listen (3.1.5)
+ DEBUG [a872246c] 	 * method_source (0.8.2)
+ DEBUG [a872246c] 	 * mustermann (1.0.0)
+ DEBUG [a872246c] 	 * slop (3.6.0)
+ DEBUG [a872246c] 	 * pry (0.10.4)
+ DEBUG [a872246c] 	 * rack-protection (2.0.0)
+ DEBUG [a872246c] 	 * rerun (0.11.0)
+ DEBUG [a872246c] 	 * rspec-support (3.6.0)
+ DEBUG [a872246c] 	 * rspec-core (3.6.0)
+ DEBUG [a872246c] 	 * rspec-expectations (3.6.0)
+ DEBUG [a872246c] 	 * rspec-mocks (3.6.0)
+ DEBUG [a872246c] 	 * rspec (3.6.0)
+ DEBUG [a872246c] 	 * tilt (2.0.7)
+ DEBUG [a872246c] 	 * sinatra (2.0.0)
+ DEBUG [a872246c] 	 * timecop (0.8.1)
+ DEBUG [a872246c] 	Install missing gems with `bundle install`
+ DEBUG [a872246c] Finished in 1.430 seconds with exit status 1 (failed).
+  INFO [60785a41] Running /usr/local/rvm/bin/rvm 2.4.1 do bundle install --path /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/bundle --without development test --deployment --quiet as profiart@144.76.189.18
+ DEBUG [60785a41] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 && /usr/local/rvm/bin/rvm 2.4.1 do bundle install --path /home/profiart/domains/webook_disk.profiart.pl/public_html/shared/bundle --without development test --deployment --quiet
+ DEBUG [60785a41] 	Warning, new version of rvm available '1.29.2', you are using older version '1.26.11'.
+You can disable this warning with:    echo rvm_autoupdate_flag=0 >> ~/.rvmrc
+You can enable  auto-update  with:    echo rvm_autoupdate_flag=2 >> ~/.rvmrc
+  INFO [60785a41] Finished in 9.603 seconds with exit status 0 (successful).
+  INFO [ee46cd77] Running /usr/bin/env ln -s /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/current as profiart@144.76.189.18
+ DEBUG [ee46cd77] Command: /usr/bin/env ln -s /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/20170626164431 /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/current
+  INFO [ee46cd77] Finished in 0.181 seconds with exit status 0 (successful).
+  INFO [367ebc29] Running /usr/bin/env mv /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/current /home/profiart/domains/webook_disk.profiart.pl/public_html as profiart@144.76.189.18
+ DEBUG [367ebc29] Command: /usr/bin/env mv /home/profiart/domains/webook_disk.profiart.pl/public_html/releases/current /home/profiart/domains/webook_disk.profiart.pl/public_html
+  INFO [367ebc29] Finished in 0.176 seconds with exit status 0 (successful).
+ DEBUG [0802d2c1] Running /usr/bin/env ls -x /home/profiart/domains/webook_disk.profiart.pl/public_html/releases as profiart@144.76.189.18
+ DEBUG [0802d2c1] Command: /usr/bin/env ls -x /home/profiart/domains/webook_disk.profiart.pl/public_html/releases
+ DEBUG [0802d2c1] 	20170626164431
+ DEBUG [0802d2c1] Finished in 0.153 seconds with exit status 0 (successful).
+ DEBUG [2823d1ca] Running if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases'" 1>&2; false; fi as profiart@144.76.189.18
+ DEBUG [2823d1ca] Command: if test ! -d /home/profiart/domains/webook_disk.profiart.pl/public_html/releases; then echo "Directory does not exist '/home/profiart/domains/webook_disk.profiart.pl/public_html/releases'" 1>&2; false; fi
+ DEBUG [2823d1ca] Finished in 0.170 seconds with exit status 0 (successful).
+  INFO [77236276] Running /usr/bin/env echo "Branch master (at 5b63d5bf6bf099d46440b35abf858d83f8060b56) deployed as release 20170626164431 by mariusz" >> /home/profiart/domains/webook_disk.profiart.pl/public_html/revisions.log as profiart@144.76.189.18
+ DEBUG [77236276] Command: cd /home/profiart/domains/webook_disk.profiart.pl/public_html/releases && /usr/bin/env echo "Branch master (at 5b63d5bf6bf099d46440b35abf858d83f8060b56) deployed as release 20170626164431 by mariusz" >> /home/profiart/domains/webook_disk.profiart.pl/public_html/revisions.log
+  INFO [77236276] Finished in 0.172 seconds with exit status 0 (successful).
