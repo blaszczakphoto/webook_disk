@@ -20,7 +20,7 @@ namespace :deploy do
     on roles(:all) do |_host|
       within(fetch(:deploy_to)) do
         within('current') do
-          execute(:rackup "-p #{fetch(:web_server_port)} -E production -D")
+          execute(:rackup ,"-p #{fetch(:web_server_port)} -E production ")
         end
       end
     end
