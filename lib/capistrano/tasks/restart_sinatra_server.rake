@@ -2,10 +2,10 @@
 
 
 namespace :deploy do
-  task :stop_server do
+  task :stop_server  do
     on roles(:all) do |_host|
       within(fetch(:deploy_to)) do
-        server_pid = capture('ps aux | grep "[r]uby receive_books.rb -p 3012" | awk \'{print $2}\'')
+        server_pid = capture('ps aux | grep "[r]ackup -p 3012" | awk \'{print $2}\'')
         if server_pid == ''
           puts 'No server running'
         else
