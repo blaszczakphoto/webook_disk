@@ -18,7 +18,7 @@ get '/' do
   if settings.development?
     "development!"
   else
-    "not developmentd"
+    "not development"
   end
 end
 
