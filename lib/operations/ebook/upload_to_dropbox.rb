@@ -39,7 +39,7 @@ module Ebook
     end
 
     def clean_directories!
-      FileUtils.rm_rf(draft_path)
+      # FileUtils.rm_rf(draft_path)
     end
   end
 end
