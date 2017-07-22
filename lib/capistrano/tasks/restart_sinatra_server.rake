@@ -5,7 +5,7 @@ namespace :deploy do
   task :stop_server  do
     on roles(:all) do |_host|
       within(fetch(:deploy_to)) do
-        server_pid = capture('ps aux | grep "[r]ackup -p 3012" | awk \'{print $2}\'')
+        server_pid = capture('ps aux | grep "[p]uma 3.9.1 (tcp://0.0.0.0:3012)" | awk \'{print $2}\'')
         if server_pid == ''
           puts 'No server running'
         else
