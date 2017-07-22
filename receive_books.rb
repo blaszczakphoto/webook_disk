@@ -32,6 +32,9 @@ private
 
 def generate_ebook(book_id, draft_path)
   stdout, stderr, status = Kindlegen.run("#{draft_path}/book.opf", "-o", "#{book_id}.mobi")
+  File.open("#{settings.root}/kindlegenlog", "a+") do |f|
+    f.write(stdout)
+  end
   if status == 0
     puts stdout
   else
