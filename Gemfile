@@ -4,11 +4,11 @@ gem 'sinatra'
 gem 'kindlegen'
 gem 'dropbox_api'
 gem 'puma'
+gem 'pry'
 
 group :development, :test do
   gem 'rspec'
   gem 'rerun'
-  gem 'pry'
   gem 'dotenv'
   gem 'timecop'
 end
