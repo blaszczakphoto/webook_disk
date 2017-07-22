@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'kindlegen'
 gem 'dropbox_api'
+gem 'puma'
 
 group :development, :test do
   gem 'rspec'
