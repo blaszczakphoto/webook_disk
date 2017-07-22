@@ -31,11 +31,8 @@ end
 private
 
 def generate_ebook(book_id, draft_path)
-  fileexists = File.file?("#{draft_path}/images/seer-icon_rocket-300x300.png")
-  fileexistsmsg = (fileexists) ? "Obrazek istnieje!!!!!!!!!!!!!" : "obrazek NIE istnieje!!!!!!!!!!!"
   stdout, stderr, status = Kindlegen.run("#{draft_path}/book.opf", "-o", "#{book_id}.mobi")
   File.open("#{settings.root}/kindlegenlog", "a+") do |f|
-    f.write(fileexistsmsg)
     f.write(stdout)
   end
   if status == 0
