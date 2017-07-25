@@ -5,8 +5,8 @@ require 'timecop'
 describe CalibreLogger do
   let(:kindle_log_path) { "#{Sinatra::Application.settings.root}/spec/support/kindle.log" }
   before do
-    File.open(kindle_log_path, "w") do |f|
-    end
+    File.open(kindle_log_path, "w") {}
+    
   end
   after do
     FileUtils.rm_f(kindle_log_path)
