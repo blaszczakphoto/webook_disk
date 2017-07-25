@@ -52,8 +52,8 @@ end
 
 private
 
-def generate_ebook(book_id, draft_path)
-  Ebook::Generate.new(book_id: book_id, draft_path: draft_path).call
+def generate_ebook(book_name, draft_path)
+  Ebook::Generate.new(book_name: book_name, draft_path: draft_path).call
 end
 
 def create_draft_files

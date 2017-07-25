@@ -5,8 +5,6 @@ module Ebook
   class Generate
     attr_accessor :draft_path, :book_name, :calibre_logger
 
-    CALIBRE_SHELL_COMMAND = 'ebook-convert'
-
     def initialize(draft_path:, book_name:, calibre_logger: CalibreLogger.new)
       @draft_path = draft_path
       @book_name = book_name
@@ -25,7 +23,8 @@ module Ebook
     end
 
     def run_calibre_shell_command
-      `#{CALIBRE_SHELL_COMMAND} #{draft_file_path} #{output_file_path}`
+      calibre_shell_command = "ebook-convert"
+      `#{calibre_shell_command} #{draft_file_path} #{output_file_path}`
     end
 
     def draft_file_path

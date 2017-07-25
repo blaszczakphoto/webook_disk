@@ -4,7 +4,7 @@ require 'timecop'
 
 describe Ebook::Generate do
   let(:draft_path) { "#{root_path}/books_drafts/#{book_stamp}" }
-  let(:book_id) { "3_345" }
+  let(:book_name) { "3_345" }
   let(:book_stamp) { "123" }
 
   let(:root_path) { Sinatra::Application.settings.root }
@@ -18,11 +18,11 @@ describe Ebook::Generate do
     FileUtils.rm_rf("#{root_path}/books_drafts")
     FileUtils.mkdir_p("#{root_path}/books_drafts")
   end
-  subject { described_class.new(draft_path: draft_path, book_id: book_id) }
+  subject { described_class.new(draft_path: draft_path, book_name: book_name) }
 
   it "creates a mobi file inside of book_draft directory" do
     subject.call
-    expect(File.exists?("#{draft_path}/#{book_id}.mobi")).to eq(true)
+    expect(File.exists?("#{draft_path}/#{book_name}.mobi")).to eq(true)
   end
 
   it "calls calibre_logger #log method" do
