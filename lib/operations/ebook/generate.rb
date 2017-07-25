@@ -13,8 +13,8 @@ module Ebook
     end
 
     def call
-      stdout = run_calibre_shell_command
-      calibre_logger_log(stdout)
+      calibre_command_output = run_calibre_shell_command
+      calibre_logger_log(calibre_command_output)
     end
 
     private
