@@ -45,18 +45,17 @@ get '/test_cmd' do
 end
 
 post '/' do
-  create_draft_files
-  generate_ebook(book_stamp, draft_path)
+  main_draft_source_filepath = create_draft_files
+  generate_ebook(book_stamp, draft_path, main_draft_source_filepath)
   upload_to_dropbox
 end
 
 private
 
-def generate_ebook(book_name, draft_path)
-  draft_source_file_path = "#{draft_path}/book.opf"
+def generate_ebook(book_name, draft_path, main_draft_source_filepath)
   Ebook::Generate.new(book_name: book_name, 
     draft_path: draft_path, 
-    draft_source_file_path: draft_source_file_path
+    draft_source_file_path: main_draft_source_filepath
     ).call
 end
 

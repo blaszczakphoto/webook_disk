@@ -57,6 +57,10 @@ describe Ebook::CreateDraft do
     expect(File.exists?("#{root_path}/books_drafts/#{book_stamp}/images/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg")).to be_truthy
   end
 
+  it "it returns path to main source file of the created draft" do
+    expect(subject.call).to eq("#{root_path}/books_drafts/#{book_stamp}/book.opf")
+  end
+
   context "one image url is invalid" do
     subject do 
       described_class.new(

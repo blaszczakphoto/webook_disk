@@ -17,9 +17,10 @@ module Ebook
 
     def call
       create_book_draft_dir
-      create_book_draft_files
       create_images_dir
       copy_images
+      main_draft_source_filepath = create_book_draft_files
+      main_draft_source_filepath
     end
 
     private
@@ -35,7 +36,9 @@ module Ebook
     end
 
     def save_file_from_string(file_name, string)
-      File.open("#{draft_path}/#{file_name}", "w") {|f| f.write(string) }
+      file_path = "#{draft_path}/#{file_name}"
+      File.open(file_path, "w") {|f| f.write(string) }
+      file_path
     end
 
     def create_images_dir
