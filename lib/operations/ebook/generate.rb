@@ -3,12 +3,13 @@ require_relative '../../calibre_logger'
 
 module Ebook
   class Generate
-    attr_accessor :draft_path, :book_name, :calibre_logger
+    attr_accessor :draft_path, :book_name, :calibre_logger, :draft_source_file_path
 
-    def initialize(draft_path:, book_name:, calibre_logger: CalibreLogger.new)
+    def initialize(draft_path:, book_name:, calibre_logger: CalibreLogger.new, draft_source_file_path:)
       @draft_path = draft_path
       @book_name = book_name
       @calibre_logger = calibre_logger
+      @draft_source_file_path = draft_source_file_path
     end
 
     def call
@@ -24,11 +25,7 @@ module Ebook
 
     def run_calibre_shell_command
       calibre_shell_command = "ebook-convert"
-      `#{calibre_shell_command} #{draft_file_path} #{output_file_path}`
-    end
-
-    def draft_file_path
-      "#{draft_path}/book.opf"
+      `#{calibre_shell_command} #{draft_source_file_path} #{output_file_path}`
     end
 
     def output_file_path

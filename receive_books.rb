@@ -53,7 +53,11 @@ end
 private
 
 def generate_ebook(book_name, draft_path)
-  Ebook::Generate.new(book_name: book_name, draft_path: draft_path).call
+  draft_source_file_path = "#{draft_path}/book.opf"
+  Ebook::Generate.new(book_name: book_name, 
+    draft_path: draft_path, 
+    draft_source_file_path: draft_source_file_path
+    ).call
 end
 
 def create_draft_files
