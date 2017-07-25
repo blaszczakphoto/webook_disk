@@ -1,6 +1,5 @@
 require 'spec_helper.rb'
 require 'fileutils'
-require 'timecop'
 
 describe CalibreLogger do
   let(:kindle_log_path) { "#{Sinatra::Application.settings.root}/spec/support/kindle.log" }
