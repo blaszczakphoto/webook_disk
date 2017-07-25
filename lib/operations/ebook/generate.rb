@@ -13,12 +13,15 @@ module Ebook
     end
 
     def call
-      calibre_command_output = run_calibre_shell_command
-      calibre_logger_log(calibre_command_output)
-      output_file_path
+      generate_mobi_file
     end
 
     private
+
+    def generate_mobi_file
+      calibre_command_output = run_calibre_shell_command
+      calibre_logger_log(calibre_command_output)
+    end
 
     def run_calibre_shell_command
       `#{CALIBRE_SHELL_COMMAND} #{draft_file_path} #{output_file_path}`

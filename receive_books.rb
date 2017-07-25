@@ -6,6 +6,7 @@ require 'dropbox_api'
 require_relative 'lib/services/generate_book_stamp'
 require_relative 'lib/operations/ebook/create_draft'
 require_relative 'lib/operations/ebook/upload_to_dropbox'
+require_relative 'lib/operations/ebook/generate'
 
 if settings.development? || settings.test?
   require 'pry'
@@ -52,14 +53,7 @@ end
 private
 
 def generate_ebook(book_id, draft_path)
-  draft_file_path = "#{draft_path}/book.opf"
-  output_file_path = "#{draft_path}/#{book_id}.mobi"
-
-  stdout = `ebook-convert #{draft_file_path} #{output_file_path}`
-
-  File.open("#{settings.root}/kindlegenlog", "a+") do |f|
-    f.write(stdout)
-  end
+  Ebook::Generate.new(book_id: book_id, draft_path: draft_path).call
 end
 
 def create_draft_files
