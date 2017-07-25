@@ -18,7 +18,7 @@ get '/' do
   if settings.development?
     "development!"
   else
-    "not development test"
+    "not development -> production"
   end
 end
 
@@ -50,7 +50,10 @@ def create_draft_files
 end
 
 def upload_to_dropbox(mobi_file_path)
-  Ebook::UploadToDropbox.new(book_name: book_stamp, draft_path: draft_path, mobi_file_path: mobi_file_path).call
+  Ebook::UploadToDropbox.new(book_name: book_stamp, 
+    draft_path: draft_path, 
+    mobi_file_path: mobi_file_path
+    ).call
 end
 
 def book_stamp
