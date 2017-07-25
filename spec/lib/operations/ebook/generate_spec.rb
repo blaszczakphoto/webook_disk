@@ -11,6 +11,7 @@ describe Ebook::Generate do
   before do
     Timecop.freeze(Time.local(1991, 5, 11, 10, 30, 0))
     FileUtils.copy_entry("#{root_path}/spec/support/book_draft", "#{root_path}/books_drafts/#{book_stamp}")
+    allow_any_instance_of(CalibreLogger).to receive(:log)
   end
   after do
     Timecop.return
@@ -22,5 +23,10 @@ describe Ebook::Generate do
   it "creates a mobi file inside of book_draft directory" do
     subject.call
     expect(File.exists?("#{draft_path}/#{book_id}.mobi")).to eq(true)
+  end
+
+  it "calls calibre_logger #log method" do
+    expect_any_instance_of(CalibreLogger).to receive(:log)
+    subject.call
   end
 end
