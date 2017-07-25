@@ -22,6 +22,27 @@ get '/' do
   end
 end
 
+get '/test' do
+  stdout, stderr, status = Kindlegen.run("/home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book.opf", "-o", "test.mobi")
+  File.open("#{settings.root}/kindlegenlog", "a+") do |f|
+    f.write(stdout)
+  end
+  if status == 0
+    puts stdout
+  else
+    $stderr.puts stderr
+  end
+  "success"
+end
+
+get '/test_cmd' do
+ stdout = `ebook-convert /home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book.opf /home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book2.mobi`
+ File.open("#{settings.root}/kindlegenlog", "a+") do |f|
+   f.write(stdout)
+ end
+ "success"
+end
+
 post '/' do
   create_draft_files
   generate_ebook(book_stamp, draft_path)
