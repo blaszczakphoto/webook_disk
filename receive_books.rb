@@ -14,7 +14,6 @@ if settings.development? || settings.test?
 end
 
 
-
 get '/' do
   if settings.development?
     "development!"
@@ -23,31 +22,11 @@ get '/' do
   end
 end
 
-get '/test' do
-  stdout, stderr, status = Kindlegen.run("/home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book.opf", "-o", "test.mobi")
-  File.open("#{settings.root}/kindlegenlog", "a+") do |f|
-    f.write(stdout)
-  end
-  if status == 0
-    puts stdout
-  else
-    $stderr.puts stderr
-  end
-  "success"
-end
-
-get '/test_cmd' do
- stdout = `ebook-convert /home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book.opf /home/profiart/domains/webookdisk.profiart.pl/public_html/current/books_drafts/5_125157_22072017/book2.mobi`
- File.open("#{settings.root}/kindlegenlog", "a+") do |f|
-   f.write(stdout)
- end
- "success"
-end
-
 post '/' do
   main_draft_source_filepath = create_draft_files
-  generate_ebook(book_stamp, draft_path, main_draft_source_filepath)
-  upload_to_dropbox
+  mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_filepath)
+  link_to_download = upload_to_dropbox(mobi_file_path)
+  link_to_download
 end
 
 private
@@ -70,8 +49,8 @@ def create_draft_files
   ).call
 end
 
-def upload_to_dropbox
-  Ebook::UploadToDropbox.new(book_stamp, draft_path).call
+def upload_to_dropbox(mobi_file_path)
+  Ebook::UploadToDropbox.new(book_name: book_stamp, draft_path: draft_path, mobi_file_path: mobi_file_path).call
 end
 
 def book_stamp

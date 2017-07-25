@@ -14,6 +14,7 @@ module Ebook
 
     def call
       generate_mobi_file
+      output_file_path
     end
 
     private
