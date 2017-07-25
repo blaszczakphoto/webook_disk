@@ -1,14 +1,15 @@
 require_relative '../../../receive_books.rb'
+require_relative '../../calibre_logger'
 
 module Ebook
   class Generate
-    attr_accessor :draft_path, :book_id, :calibre_logger
+    attr_accessor :draft_path, :book_name, :calibre_logger
 
     CALIBRE_SHELL_COMMAND = 'ebook-convert'
 
-    def initialize(draft_path:, book_id:, calibre_logger: CalibreLogger.new)
+    def initialize(draft_path:, book_name:, calibre_logger: CalibreLogger.new)
       @draft_path = draft_path
-      @book_id = book_id
+      @book_name = book_name
       @calibre_logger = calibre_logger
     end
 
@@ -20,7 +21,7 @@ module Ebook
 
     def generate_mobi_file
       calibre_command_output = run_calibre_shell_command
-      calibre_logger_log(calibre_command_output)
+      log_calibre_output(calibre_command_output)
     end
 
     def run_calibre_shell_command
@@ -32,10 +33,10 @@ module Ebook
     end
 
     def output_file_path
-      "#{draft_path}/#{book_id}.mobi"
+      "#{draft_path}/#{book_name}.mobi"
     end
 
-    def calibre_logger_log(text)
+    def log_calibre_output(text)
       calibre_logger.log(text)
     end
   end
