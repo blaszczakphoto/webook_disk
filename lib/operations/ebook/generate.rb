@@ -15,6 +15,7 @@ module Ebook
     def call
       calibre_command_output = run_calibre_shell_command
       calibre_logger_log(calibre_command_output)
+      output_file_path
     end
 
     private
