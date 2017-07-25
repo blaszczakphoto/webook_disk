@@ -13,7 +13,6 @@ module Ebook
     def call
       upload!
       link = create_shareable_link
-      clean_directories!
       direct_download_link(link)
     end
 
@@ -41,10 +40,6 @@ module Ebook
 
     def mobi_file_binary_content
       IO.read(mobi_file_path)
-    end
-
-    def clean_directories!
-      FileUtils.rm_rf(draft_path)
     end
   end
 end

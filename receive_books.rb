@@ -26,6 +26,7 @@ post '/' do
   main_draft_source_filepath = create_draft_files
   mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_filepath)
   link_to_download = upload_to_dropbox(mobi_file_path)
+  clean_draft_directory!
   link_to_download
 end
 
@@ -54,6 +55,10 @@ def upload_to_dropbox(mobi_file_path)
     draft_path: draft_path, 
     mobi_file_path: mobi_file_path
     ).call
+end
+
+def clean_draft_directory!
+  DraftCleaner.new(draft_path: draft_path).call
 end
 
 def book_stamp
