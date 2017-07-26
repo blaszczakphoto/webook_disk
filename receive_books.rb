@@ -7,6 +7,7 @@ require_relative 'lib/services/generate_book_stamp'
 require_relative 'lib/operations/ebook/create_draft'
 require_relative 'lib/operations/ebook/upload_to_dropbox'
 require_relative 'lib/operations/ebook/generate'
+require_relative 'lib/draft_cleaner'
 
 if settings.development? || settings.test?
   require 'pry'
