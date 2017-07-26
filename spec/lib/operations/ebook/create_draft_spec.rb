@@ -25,7 +25,6 @@ describe Ebook::CreateDraft do
   end
   subject do 
     described_class.new(
-      book_stamp: book_stamp, 
       text: text, 
       toc: toc, 
       book_opf: book_opf, 
@@ -64,7 +63,6 @@ describe Ebook::CreateDraft do
   context "one image url is invalid" do
     subject do 
       described_class.new(
-        book_stamp: book_stamp, 
         text: text, 
         toc: toc, 
         book_opf: book_opf, 

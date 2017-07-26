@@ -23,8 +23,8 @@ get '/' do
 end
 
 post '/' do
-  main_draft_source_filepath = create_draft_files
-  mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_filepath)
+  main_draft_source_file_path = create_draft_files
+  mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_file_path)
   link_to_download = upload_to_dropbox(mobi_file_path)
   clean_draft_directory!
   link_to_download
@@ -32,16 +32,15 @@ end
 
 private
 
-def generate_ebook(book_name, draft_path, main_draft_source_filepath)
+def generate_ebook(book_name, draft_path, main_draft_source_file_path)
   Ebook::Generate.new(book_name: book_name, 
     draft_path: draft_path, 
-    draft_source_file_path: main_draft_source_filepath
+    draft_source_file_path: main_draft_source_file_path
     ).call
 end
 
 def create_draft_files
   Ebook::CreateDraft.new(
-    book_stamp: book_stamp, 
     text: params['ebook_draft']['text'],
     toc: params['ebook_draft']['toc'],
     book_opf: params['ebook_draft']['book_opf'],

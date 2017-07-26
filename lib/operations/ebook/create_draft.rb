@@ -4,10 +4,9 @@ require 'uri'
 
 module Ebook
   class CreateDraft
-    attr_accessor :book_stamp, :text, :toc, :book_opf, :draft_path, :image_urls
+    attr_accessor :text, :toc, :book_opf, :draft_path, :image_urls
 
-    def initialize(book_stamp:, text:, toc:, book_opf:, draft_path:, image_urls:)
-      @book_stamp = book_stamp
+    def initialize(text:, toc:, book_opf:, draft_path:, image_urls:)
       @text = text
       @toc = toc
       @book_opf = book_opf
@@ -19,30 +18,18 @@ module Ebook
       create_book_draft_dir
       create_images_dir
       copy_images
-      main_draft_source_filepath = create_book_draft_files
-      main_draft_source_filepath
+      main_draft_source_file_path = create_book_draft_files
+      main_draft_source_file_path
     end
 
     private
 
-    def create_book_draft_files
-      save_file_from_string("text.html", text)
-      save_file_from_string("toc.html", toc)
-      save_file_from_string("book.opf", book_opf)
-    end
-
     def create_book_draft_dir
-      FileUtils::mkdir_p draft_path
+      FileUtils::mkdir_p(draft_path)
     end
-
-    def save_file_from_string(file_name, string)
-      filepath = "#{draft_path}/#{file_name}"
-      File.open(filepath, "w") {|f| f.write(string) }
-      filepath
-    end
-
+    
     def create_images_dir
-      FileUtils::mkdir_p "#{draft_path}/images"
+      FileUtils::mkdir_p("#{draft_path}/images")
     end
 
     def copy_images
@@ -56,6 +43,18 @@ module Ebook
           end
         end
       end
+    end
+
+    def create_book_draft_files
+      save_file_from_string("text.html", text)
+      save_file_from_string("toc.html", toc)
+      save_file_from_string("book.opf", book_opf)
+    end
+
+    def save_file_from_string(file_name, string)
+      filepath = "#{draft_path}/#{file_name}"
+      File.open(filepath, "w") {|f| f.write(string) }
+      filepath
     end
   end
 end
