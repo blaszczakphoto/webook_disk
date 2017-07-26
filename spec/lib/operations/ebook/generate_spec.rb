@@ -3,21 +3,18 @@ require 'fileutils'
 require 'timecop'
 
 describe Ebook::Generate do
-  let(:draft_path) { "#{root_path}/books_drafts/#{book_stamp}" }
+  let(:root_path) { Sinatra::Application.settings.root }
+  let(:draft_path) { "#{root_path}/books_drafts/123" }
   let(:book_name) { "3_345" }
-  let(:book_stamp) { "123" }
   let(:draft_source_file_path) { "#{draft_path}/book.opf" }
 
-  let(:root_path) { Sinatra::Application.settings.root }
   before do
-    Timecop.freeze(Time.local(1991, 5, 11, 10, 30, 0))
-    FileUtils.copy_entry("#{root_path}/spec/support/book_draft", "#{root_path}/books_drafts/#{book_stamp}")
+    FileUtils.copy_entry("#{root_path}/spec/support/book_draft", "#{draft_path}")
     allow_any_instance_of(CalibreLogger).to receive(:log)
   end
   after do
-    Timecop.return
-    FileUtils.rm_rf("#{root_path}/books_drafts")
-    FileUtils.mkdir_p("#{root_path}/books_drafts")
+    FileUtils.rm_rf("#{draft_path}")
+    FileUtils.mkdir_p("#{draft_path}")
   end
   subject do
     described_class.new(draft_path: draft_path, 
