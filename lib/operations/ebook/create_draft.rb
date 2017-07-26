@@ -52,9 +52,9 @@ module Ebook
     end
 
     def save_file_from_string(file_name, string)
-      filepath = "#{draft_path}/#{file_name}"
-      File.open(filepath, "w") {|f| f.write(string) }
-      filepath
+      file_path = "#{draft_path}/#{file_name}"
+      File.open(file_path, "w") {|f| f.write(string) }
+      file_path
     end
   end
 end
