@@ -3,12 +3,12 @@ require_relative '../../calibre_logger'
 
 module Ebook
   class Generate
-    attr_accessor :draft_path, :book_name, :calibre_logger, :draft_source_file_path
+    attr_accessor :draft_path, :book_name, :logger, :draft_source_file_path
 
-    def initialize(draft_path:, book_name:, calibre_logger: CalibreLogger.new, draft_source_file_path:)
+    def initialize(draft_path:, book_name:, logger: CalibreLogger.new, draft_source_file_path:)
       @draft_path = draft_path
       @book_name = book_name
-      @calibre_logger = calibre_logger
+      @logger = logger
       @draft_source_file_path = draft_source_file_path
     end
 
@@ -34,7 +34,7 @@ module Ebook
     end
 
     def log_calibre_output(text)
-      calibre_logger.log(text)
+      logger.log(text)
     end
   end
 end
