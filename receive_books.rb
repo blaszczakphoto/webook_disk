@@ -30,6 +30,10 @@ get '/' do
   end
 end
 
+get '/test-settings' do
+  settings.calibre_logger_file_log_path
+end
+
 post '/' do
   Raven.capture do
     main_draft_source_file_path = create_draft_files
