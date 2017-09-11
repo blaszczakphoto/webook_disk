@@ -6,6 +6,7 @@ gem 'kindlegen'
 gem 'dropbox_api'
 gem 'puma'
 gem 'pry'
+gem "sentry-raven"
 
 group :development, :test do
   gem 'rspec'
