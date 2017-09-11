@@ -33,6 +33,7 @@ module Ebook
     end
 
     def copy_images
+      return if image_urls.nil?
       image_urls.each do |url|
         uri = URI.parse(url)
         File.open("#{draft_path}/images/#{File.basename(uri.path)}", 'wb') do |fo|
