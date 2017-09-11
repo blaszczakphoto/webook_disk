@@ -3,6 +3,7 @@ require_relative 'config'
 require 'kindlegen'
 require 'fileutils'
 require 'dropbox_api'
+require 'sentry-raven'
 require_relative 'lib/services/generate_book_stamp'
 require_relative 'lib/operations/ebook/create_draft'
 require_relative 'lib/operations/ebook/upload_to_dropbox'
@@ -14,6 +15,12 @@ if settings.development? || settings.test?
   require 'dotenv/load'
 end
 
+get '/test_raven' do
+  Raven.capture do
+    # capture any exceptions which happen during execution of this block
+    1 / 0
+  end
+end
 
 get '/' do
   if settings.development?
@@ -24,10 +31,12 @@ get '/' do
 end
 
 post '/' do
-  main_draft_source_file_path = create_draft_files
-  mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_file_path)
-  link_to_download = upload_to_dropbox(mobi_file_path)
+  Raven.capture do
+    main_draft_source_file_path = create_draft_files
+    mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_file_path)
+    link_to_download = upload_to_dropbox(mobi_file_path)
   clean_draft_directory!
+  end
   link_to_download
 end
 
