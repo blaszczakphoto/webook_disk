@@ -35,9 +35,9 @@ post '/' do
     main_draft_source_file_path = create_draft_files
     mobi_file_path = generate_ebook(book_stamp, draft_path, main_draft_source_file_path)
     link_to_download = upload_to_dropbox(mobi_file_path)
-  clean_draft_directory!
+    clean_draft_directory!
+    link_to_download
   end
-  link_to_download
 end
 
 private
