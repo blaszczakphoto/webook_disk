@@ -22,5 +22,8 @@ you must have access to SSH, because capistrano works via it
 # Tests
 `rspec`  
 
+# Run locally
+`bundle exec rackup -p 4567 -E development`
+
 # Resources
 - http://jesus.github.io/dropbox_api/
